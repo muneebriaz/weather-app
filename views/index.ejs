@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>City Weather</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <style>
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400);
+    html,
+    body {
+      background-color: #f3f3f3;
+      font-family: "Roboto", sans-serif;
+    }
+
+    .card {
+      margin: 0 auto;
+      margin-top: 50px;
+      padding: 5px 30px;
+      width: 290px;
+      height: 330px;
+      border-radius: 3px;
+      background-color: #fff;
+      box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.2);
+      -webkit-animation: open 2s cubic-bezier(0.39, 0, 0.38, 1);
+    }
+
+    @-webkit-keyframes open {
+      from {
+        padding: 0 30px;
+        height: 0;
+      }
+      to {
+        height: 330px;
+      }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      position: relative;
+    }
+
+    h1 {
+      float: right;
+      color: #666;
+      font-weight: 300;
+      font-size: 6em;
+      line-height: 1em;
+      -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;
+    }
+
+    h2 {
+      font-weight: 300;
+      margin-bottom: 0px;
+      font-size: 2.25em;
+      -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1);
+    }
+
+    h3 {
+      float: left;
+      margin-right: 33px;
+      color: #777;
+      font-weight: 400;
+      font-size: 1em;
+    }
+
+    span {
+      color: #999;
+      font-weight: 300;
+    }
+
+    span span {
+      margin-left: 0;
+    }
+
+    .dot {
+      font-size: 0.9em;
+    }
+
+    .sky {
+      position: relative;
+      margin-top: 108px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #03a9f4;
+      -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.2s;
+    }
+
+    .sun {
+      position: relative;
+      top: -3px;
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      background-color: #ffeb3b;
+      -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.5s;
+    }
+
+    .cloud {
+      position: absolute;
+      top: 60px;
+      left: 30px;
+      -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.7s;
+    }
+
+    .cloud:before,
+    .cloud:after {
+      position: absolute;
+      display: block;
+      content: "";
+    }
+
+    .cloud:before {
+      margin-left: -10px;
+      width: 51px;
+      height: 18px;
+      background: #fff;
+    }
+
+    .cloud:after {
+      position: absolute;
+      top: -10px;
+      left: -22px;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 50px -6px 0 6px #fff, 25px -19px 0 10px #fff;
+    }
+
+    table {
+      position: relative;
+      top: 10px;
+      width: 100%;
+      text-align: center;
+    }
+
+    tr:nth-child(1) td:nth-child(1),
+    tr:nth-child(1) td:nth-child(2),
+    tr:nth-child(1) td:nth-child(3),
+    tr:nth-child(1) td:nth-child(4),
+    tr:nth-child(1) td:nth-child(5) {
+      padding-bottom: 32px;
+      -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.7s;
+    }
+
+    tr:nth-child(2) td:nth-child(1),
+    tr:nth-child(2) td:nth-child(2),
+    tr:nth-child(2) td:nth-child(3),
+    tr:nth-child(2) td:nth-child(4),
+    tr:nth-child(2) td:nth-child(5) {
+      padding-bottom: 7px;
+      -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.9s;
+    }
+
+    tr:nth-child(3) td:nth-child(1),
+    tr:nth-child(3) td:nth-child(2),
+    tr:nth-child(3) td:nth-child(3),
+    tr:nth-child(3) td:nth-child(4),
+    tr:nth-child(3) td:nth-child(5) {
+      padding-bottom: 7px;
+      -webkit-animation: up 2s cubic-bezier(0.39, 0, 0.38, 1) 0.9s;
+    }
+
+    tr:nth-child(2),
+    tr:nth-child(3) {
+      font-size: 0.9em;
+    }
+
+    tr:nth-child(3) {
+      color: #999;
+    }
+
+    @-webkit-keyframes up {
+      0% {
+        opacity: 0;
+        -webkit-transform: translateY(15px);
+      }
+      50% {
+        opacity: 0;
+        -webkit-transform: translateY(15px);
+      }
+      99% {
+        -webkit-animation-play-state: paused;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    body {
+      width: 800px;
+      margin: 0 auto;
+      font-family: "Open Sans", sans-serif;
+    }
+    .container {
+      width: 600px;
+      margin: 0 auto;
+    }
+    fieldset {
+      display: block;
+      -webkit-margin-start: 0px;
+      -webkit-margin-end: 0px;
+      -webkit-padding-before: 0em;
+      -webkit-padding-start: 0em;
+      -webkit-padding-end: 0em;
+      -webkit-padding-after: 0em;
+      border: 0px;
+      border-image-source: initial;
+      border-image-slice: initial;
+      border-image-width: initial;
+      border-image-outset: initial;
+      border-image-repeat: initial;
+      min-width: -webkit-min-content;
+      padding: 30px;
+    }
+    .ghost-input,
+    p {
+      display: block;
+      font-weight: 300;
+      width: 100%;
+      font-size: 25px;
+      border: 0px;
+      outline: none;
+      width: 100%;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      color: #4b545f;
+      background: transparent;
+      font-family: Open Sans, Verdana;
+      padding: 10px 15px;
+      margin: 0px 0px;
+      -webkit-transition: all 0.1s ease-in-out;
+      -moz-transition: all 0.1s ease-in-out;
+      -ms-transition: all 0.1s ease-in-out;
+      -o-transition: all 0.1s ease-in-out;
+      transition: all 0.1s ease-in-out;
+    }
+    .ghost-input:focus {
+      border-bottom: 1px solid #ddd;
+    }
+    .ghost-button {
+      background-color: transparent;
+      border: 2px solid #ddd;
+      padding: 10px 30px;
+      width: 100%;
+      min-width: 350px;
+      -webkit-transition: all 0.1s ease-in-out;
+      -moz-transition: all 0.1s ease-in-out;
+      -ms-transition: all 0.1s ease-in-out;
+      -o-transition: all 0.1s ease-in-out;
+      transition: all 0.1s ease-in-out;
+    }
+    .ghost-button:hover {
+      border: 2px solid #515151;
+    }
+    p {
+      color: #e64a19;
+    }
+    .p-30 {
+      padding: 30px 30px 0px 30px;
+    }
+    .p-30 h3 {
+      font-weight: lighter;
+    }
+    .subTitle {
+      font-size: 14px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <div class="p-30">
+        <h3>Hi Muneeb, how do you feel today?</h3>
+      </div>
+      <fieldset>
+        <form action="/" method="post">
+          <input
+            name="city"
+            type="text"
+            class="ghost-input"
+            placeholder="Enter a City"
+            required
+          />
+          <input type="submit" class="ghost-button" value="Get Weather" />
+        </form>
+        <% if(error !== null){ %>
+        <p><%= error %></p>
+        <% } %> <% if(hasData == true){ %>
+        <div class="card">
+          <h2><%= weatherDetails.city %></h2>
+          <h3>
+            <span
+              >Wind <%= weatherDetails.wind %>km/h
+              <span class="dot">•</span> Humidity <%= weatherDetails.humidity
+              %>%</span
+            >
+          </h3>
+          <h1><%= weatherDetails.temprature %>°</h1>
+          <div class="sky">
+            <div class="sun"></div>
+            <div class="cloud">
+              <div class="circle-small"></div>
+              <div class="circle-tall"></div>
+              <div class="circle-medium"></div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </fieldset>
+    </div>
+  </body>
+</html>
